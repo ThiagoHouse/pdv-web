@@ -23,7 +23,8 @@ class Login extends CI_Controller
 			}
 			else
 			{
-				redirect('home');
+				// redirect('home');
+				redirect('sales');
 			}
 		}
 	}
