@@ -6,6 +6,8 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Sistema de vendas</title>
 <script src="<?php echo base_url();?>js/jquery-1.2.6.min.js" type="text/javascript" language="javascript" charset="UTF-8"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
 
 <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
      	<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/style.css" /> -->
@@ -24,41 +26,47 @@ $(document).ready(function()
 	$("#login_form input:first").focus();
 });
 </script>
+
 </head>
-<body>
-<h1> <br><p> THIAGO HOUSE INFORMATICA - <?php echo $this->config->item('application_version'); ?></h1>
-<h2>Ate aqui nos ajudou o Senhor</h2>
-<!-- <div id="welcome_message">
-		<?php echo $this->lang->line('login_welcome_message'); ?>
-		</div> -->
-<?php echo validation_errors(); ?>
+	<body>
+		<!-- fundo -->
+		<!-- <div class="" > -->
+			<!-- <h4> Gestor de nogócios <?php echo $this->config->item('application_version'); ?></h4> -->
 
-<?php echo form_open('login') ?>
-<div id="container">
-	<div id="login_form">
-	<h3><?php echo $this->lang->line('login_login'); ?></h3>
-	
-		<div class="form_field_label"><?php echo $this->lang->line('login_username'); ?>: </div>
-		<div class="form_field">
-		<?php echo form_input(array(
-		'name'=>'username', 
-		'size'=>'20')); ?>
-		</div>
+			<!-- <div id="welcome_message">
+					<?php echo $this->lang->line('login_welcome_message'); ?>
+					</div> -->
+			<?php echo validation_errors(); ?>
 
-		<div class="form_field_label"><?php echo $this->lang->line('login_password'); ?>: </div>
-		<div class="form_field">
-		<?php echo form_password(array(
-		'name'=>'password', 
-		'size'=>'20')); ?>
-		
-		</div>
-		
-		<div id="submit_button">
-		<?php echo form_submit('loginButton','Entrar'); ?>
-		</div>
-	</div>
-</div>
+			<?php echo form_open('login') ?>
+			<!-- fundo também -->
+			<div class="" id="container">
 
-<?php echo form_close(); ?>
-</body>
+				<!-- caixa de login -->
+				<div style="width:300px; color:#3D9DC5;" class="container card" id="login_form">
+					<div class="card-header text-center p-2 ">
+						<h4><strong>Login</strong></h4>
+					</div>
+					<div class="form_field_label"><?php echo $this->lang->line('login_username'); ?>: 
+					</div>
+					<div class="form_field">
+						<?php echo form_input(array(
+						'name'=>'username', 
+						'size'=>'20')); ?>
+					</div>
+					<div class="form_field_label"><?php echo $this->lang->line('login_password'); ?>: 
+					</div>
+					<div class="form_field">
+						<?php echo form_password(array(
+						'name'=>'password', 
+						'size'=>'20')); ?>
+					</div>
+					<div class="mt-3 card-footer text-center" id="submit_button">
+						<?php echo form_submit('loginButton','Entrar'); ?>
+					</div>
+				</div>
+			<!-- </div> -->
+			<?php echo form_close(); ?>
+		<!-- </div> -->
+	</body>
 </html>
