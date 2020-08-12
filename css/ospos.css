@@ -61,15 +61,15 @@ a.none
 }
 
 #title
-{
-	position:absolute;
-	bottom:0px;
-	left:0px;
-	font-family: "gill sans", sans-serif ;
-	font-size:26px;
-	/* font-weight:bold; */
-	color:#000000;
-}	
+	{
+		position:absolute;
+		bottom:0px;
+		left:0px;
+		font-family: "gill sans", sans-serif ;
+		font-size:26px;
+		/* font-weight:bold; */
+		color:#000000;
+	}	
 
 #page_title
 {

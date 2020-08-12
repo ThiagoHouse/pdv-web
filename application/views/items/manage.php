@@ -53,7 +53,6 @@ function init_table_sorting()
 				8: { sorter: false},
 				9: { sorter: false}
 			}
-
 		});
 	}
 }
@@ -119,7 +118,6 @@ function show_hide_search_filter(search_filter_section, switchImgTag) {
                 elesearchstate.value="block";
         }
 }
-
 </script>
 
 <div id="title_bar">

@@ -23,7 +23,6 @@ function init_table_sorting()
 				0: { sorter: false}, 
 				5: { sorter: false} 
 			} 
-
 		}); 
 	}
 }

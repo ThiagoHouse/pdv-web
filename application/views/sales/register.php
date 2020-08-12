@@ -1,14 +1,9 @@
-
 <!-- MENUBAR -->
 <?php $this->load->view("partial/header"); ?>
 
-<!-- NOME DA TELA -->
-<div class="card text-left text-dark" id="page_title" style="margin-bottom:8px; background-color:#E5EAF2">
-		<!-- iniciar ordem de serviço -->
-		<div class="p-2 m-0"><h4 class="p-0">Iniciar Ordem de Serviço</h4>
-			<small style="font-size:20px">Tela de venda</small>
-		</div>
-			<?php //echo $this->lang->line('sales_register'); ?>
+<!-- NOME DA TELA -->	
+	<span style="font-size:26px; font-family: gill sans, sans-serif;color: #000000;bottom: 0px;left: 0px;">Vendas<span>
+	<?php //echo $this->lang->line('sales_register'); ?>
 </div>
 
 <!-- ALERTAS  -->
@@ -47,13 +42,10 @@ if (isset($success))
 	<label id="item_label" for="item">
 
 	<?php
-	if($mode=='sale')
-	{
-		
+	if($mode=='sale'){
 		echo $this->lang->line('sales_find_or_scan_item');
 	}
-	else
-	{
+	else{
 		echo $this->lang->line('sales_find_or_scan_item_or_receipt');
 	}
 	?>
@@ -204,8 +196,9 @@ else
 
 
 <!-- SELECIONAR CLIENTE -->
-<div class="card " id="overall_sale">
-	<div class="card p-2 text-center" style="background-color:#CDE0EA;">
+
+<div class="card" id="overall_sale">
+	<div class="card p-2 text-center bg-light">
 		<?php
 		if(isset($customer))
 		{
@@ -224,12 +217,9 @@ else
 		</form>
 			<div style="margin-top:5px; text-align:center;">
 				<!-- <h3 style="margin: 5px 0 5px 0"><?php //echo $this->lang->line('common_or'); ?></h3> -->
-				<h4">Ou adicione um cliente</h4>
 				<?php echo anchor("customers/view/-1/width:350",
 				//"<div class='small_button' style='margin:0 auto;'><span>".$this->lang->line('sales_new_customer')."</span></div>",
-				"<div 	class='btn btn-sm btn-secondary' 
-						style='background-color:#BE81F7; 
-								margin:0 auto;'>
+				"<div 	class='btn btn-sm btn-primary btn-block'>
 				<span>".$this->lang->line('sales_new_customer')."</span></div>",
 				array('class'=>'thickbox none','title'=>$this->lang->line('sales_new_customer')));
 				?>
@@ -240,113 +230,114 @@ else
 	</div>
 
 	<!-- SUBTOTAL  -->
-	<div class="card p-2" style="background-color:#CDE0EA;"> 
-		<div class="card-body" 
-			 style="background-color:#E0ECF8;"
-				id='sale_details'>
-			<div class="float_left" style="width:55%;"><?php echo $this->lang->line('sales_sub_total'); ?>:</div>
-			<div class="float_left" style="width:45%; "><?php echo to_currency($subtotal); ?></div>
+	<div class="card p-2 bg-light"> 
+		<div class="" id='sale_details'>
+			<div class="float_left" style="width:55%; font-family:-apple-system;">
+				<?php //echo $this->lang->line('sales_sub_total'); ?>
+				Sub Total:
+			</div>
+			<div class="float_left" style="width:45%; font-family:-apple-system;">
+				<?php echo to_currency($subtotal); ?></div>
 
 			<?php foreach($taxes as $name=>$value) { ?>
-			<div class="float_left" style='width:55%;'><?php echo $name; ?>:</div>
-			<div class="float_left" style="width:45%; "><?php echo to_currency($value); ?></div>
+			<div class="float_left" style='width:55%; font-family:-apple-system;'><?php echo $name; ?>:</div>
+			<div class="float_left" style="width:45%; font-family:-apple-system;"><?php echo to_currency($value); ?></div>
 			<?php }; ?>
 
-			<div class="float_left" style='width:55%;'><?php echo $this->lang->line('sales_total'); ?>:</div>
-			<div class="float_left" style="width:45%; "><?php echo to_currency($total); ?></div>
+			<div class="float_left" style='width:55%; font-family:-apple-system;'>
+				<?php //echo $this->lang->line('sales_total'); ?>
+				Total:</div>
+			<div class="float_left" style="width:45%; font-family:-apple-system; "><?php echo to_currency($total); ?></div>
 		
 
 			<?php
 			// Only show this part if there are Items already in the sale.
-			if(count($cart) > 0)
-			{
+			if(count($cart) > 0){
 			?>
 
-			<div id="Cancel_sale">
+			<div id="Cancel_sale" style="text-align:center;">
 			<?php echo form_open("sales/cancel_sale",array('id'=>'cancel_sale_form')); ?>
 			<!-- <div class='small_button' id='cancel_sale_button' style='margin-top:5px;'> -->
-			<div class='btn btn-sm btn-danger' 
-					id='cancel_sale_button' 
-				 style='margin-top:5px;'>
+			<div class='btn btn-sm btn-danger btn-block' id='cancel_sale_button' >
 				<span><?php echo $this->lang->line('sales_cancel_sale'); ?></span>
 			</div>
 			</form>
 			</div>
 		</div>
-
-			<div class="clearfix" style="margin-bottom:1px;">&nbsp;</div>
-
-			
+			<!-- <div class="clearfix">&nbsp;</div> -->
+			<hr>
 		<?php
 		// Only show this part if there is at least one payment entered.
-		if(count($payments) > 0)
-		{
+		if(count($payments) > 0){
 		?>
-			<div id="finish_sale">
+			<div class="mb-3" id="finish_sale" style="text-align:center;">
 				<?php echo form_open("sales/complete",array('id'=>'finish_sale_form')); ?>
 				<!-- <label id="comment_label" for="comment"><?php echo $this->lang->line('common_comments'); ?>:</label> -->
 				<?php //echo form_textarea(array('name'=>'comment', 'id' => 'comment', 'value'=>$comment,'rows'=>'4','cols'=>'23'));?>
-				<!-- <br /><br /> -->
+
 				
-				<?php
-				
-				if(!empty($customer_email))
-				{
-					echo $this->lang->line('sales_email_receipt'). ': '. form_checkbox(array(
-					    'name'        => 'email_receipt',
-					    'id'          => 'email_receipt',
-					    'value'       => '1',
-					    'checked'     => (boolean)$email_receipt,
-					    )).'<br />('.$customer_email.')<br />';
-				}
-				 
-				if ($payments_cover_total)
-				{
-					//echo "<div class='small_button' id='finish_sale_button' style='float:left;margin-top:5px;'><span>".$this->lang->line('sales_complete_sale')."</span></div>";
-					echo "<div class='btn btn-sm btn-success btn-lg btn-block' id='finish_sale_button' style='float:left;margin-top:5px;'><span>".$this->lang->line('sales_complete_sale')."</span></div>";
-				}
-				// echo "<div class='small_button' id='suspend_sale_button' style='float:right;margin-top:5px;'><span>".$this->lang->line('sales_suspend_sale')."</span></div>";
-				echo "<div class='btn btn-sm btn-lg btn-block' 
-						   id   ='suspend_sale_button' 
-						   style='background-color:#F78181; float:right; margin-top:5px;
-							'><span>".$this->lang->line('sales_suspend_sale')."</span></div>";
-				?>
 			</div>
 			</form>
 		<?php } ?>
 
 		<table width="100%"><tr>
-			<td id='sale_details' style=" font-size:23px; width:55%; "><div class="float_left"><?php echo $this->lang->line('sales_payment_total').': ';?></div></td>
-			<td style="font-size:20px; width:45%; text-align:right;"><div class="float_left" style="text-align:right;"><?php echo to_currency($payments_total); ?></div></td>
+			<td id='sale_details'><div class="float_left" style='font-family:-apple-system;'>
+				Pagamento:
+				<?php //echo $this->lang->line('sales_payment_total').': ';?></div></td>
+			<td><div class="float_left"><?php echo to_currency($payments_total); ?></div></td>
 			</tr>
 			<tr>
-			<td id='sale_details' style="font-size:23px; width:55%;"><div class="float_left" ><?php echo $this->lang->line('sales_change_due').': ';?></div></td>
-			<td style="font-size:20px; width:45%; text-align:right; "><div class="float_left" style="text-align:right;"><?php echo to_currency($amount_due); ?></div></td>
+			<td id='sale_details'><div class="float_left" style='font-family:-apple-system;'>
+				Troco:
+				<?php //echo $this->lang->line('sales_change_due').': ';?></div></td>
+			<td><div class="float_left" style="text-align:right;">
+				<?php echo to_currency($amount_due); ?></div></td>
 			</tr>
 		</table>
+
+		<?php
+					if(!empty($customer_email)){
+						echo $this->lang->line('sales_email_receipt'). ': '. form_checkbox(array(
+							'name'        => 'email_receipt',
+							'id'          => 'email_receipt',
+							'value'       => '1',
+							'checked'     => (boolean)$email_receipt,
+							)).'<br />('.$customer_email.')<br />';
+					}
+					
+					if ($payments_cover_total){
+						//echo "<div class='small_button' id='finish_sale_button' style='float:left;margin-top:5px;'><span>".$this->lang->line('sales_complete_sale')."</span></div>";
+						echo "<div class='btn btn-sm btn-success btn-lg' id='finish_sale_button' style='margin-top:5px;'>
+						<span>".$this->lang->line('sales_complete_sale')."</span></div>";
+					}
+						// echo "<div class='small_button' id='suspend_sale_button' style='float:right;margin-top:5px;'><span>".$this->lang->line('sales_suspend_sale')."</span></div>";
+						echo "<div class='btn btn-sm btn-danger btn-lg ' id='suspend_sale_button' style='margin-top:5px;'>
+						<span>".$this->lang->line('sales_suspend_sale')."</span></div>";
+				?>
+
 	</div>
 
+
 	<!-- PAGAMENTOS  -->
-	<div class="card p-2" style="background-color:#CDE0EA;">
-
+	<div class="card p-2 bg-light">
 		<div id="Payment_Types" >
-
 			<div style="height:100px;">
 			<!-- <div> -->
-				
 				<?php echo form_open("sales/add_payment",array('id'=>'add_payment_form')); ?>
 				
 				<table class="table" width="100%">
 					<tr>
 						<!-- <td><?php //echo $this->lang->line('sales_payment').':   ';?></td> -->
-						<td id='sale_details' style="font-size:23px; font-family:arial;">Pagar em</td>
-						<td><?php echo form_dropdown( 'payment_type', $payment_options, array(), 'id="payment_types"' ); ?></td>
+						<td style='font-family:-apple-system;' id='sale_details'>Forma de Pagamento:</td>
+						<td style='font-family:-apple-system;'><?php echo form_dropdown( 'payment_type', $payment_options, array(), 'id="payment_types"' ); ?></td>
 					</tr>
 					<tr>
-						<td><span id='sale_details' style="font-size:23px; font-family:arial;" id="amount_tendered_label"><?php echo $this->lang->line( 'sales_amount_tendered' ).': '; ?></span></td>
-						<td><?php echo form_input( array('class'=>'input-group-text bg-white text-primary', 
-														'style'=>'font-size:23px',
+						<td><span id='sale_details' id="amount_tendered_label" style='font-family:-apple-system;'>
+							Valor Pago:
+							<?php //echo $this->lang->line( 'sales_amount_tendered' ).': '; ?></span></td>
+						<td><?php echo form_input( array('class'=>'input-group-text bg-white text-primary',
 														'name'=>'amount_tendered', 
+														'style'=>'font-family:-apple-system;',
 														'id'=>'amount_tendered', 
 														'value'=>to_currency_no_money($amount_due), 
 														'size'=>'3' ) );	?></td>
@@ -354,18 +345,14 @@ else
 				</table>
 
 				<!-- <div class='small_button' id='add_payment_button' style='float:left;margin-top:5px;'> -->
-				<div 	class='btn btn-sm btn-lg btn-block mb-1 text-white' 
+				<div 	class='btn btn-sm btn-primary btn-lg btn-block mb-1 text-white' 
 						id='add_payment_button' 
-						style='	background-color:#5882FA;
-								float:left; 
+						style='float:left; 
 								margin-top:5px;'>
 					<span><?php echo $this->lang->line('sales_add_payment'); ?></span>
 				</div>
-
 			</div>
-
 		</div>
-
 </form>
 
 <?php
